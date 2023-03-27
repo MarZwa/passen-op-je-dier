@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pet_id')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('sitter_id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->boolean('accepted')->nullable();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->double('rate', 3, 2);
+            $table->boolean('status')->nullable();
+            $table->foreignId('pet_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('sitter_id')->references('users')->on('users')->nullable()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
