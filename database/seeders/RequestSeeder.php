@@ -19,13 +19,13 @@ class RequestSeeder extends Seeder
 
         foreach ($pets as $pet) {
             $request = [
-                'start_date' => date('dd-mm-YY'),
-                'end_date' => date('dd-mm-YY'),
+                'start_date' => date('Y-m-d'),
+                'end_date' => date('Y-m-d'),
                 'rate' => 10.50,
                 'pet_id' => $pet->id
             ];
             $requests[] = $request;
         }
-        Request::inster($requests);
+        Request::insert($requests);
     }
 }

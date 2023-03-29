@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
                 'first_name' => $faker->firstName(),
                 'last_name' => $faker->lastName(),
                 'email' => $faker->email(),
+                'password' => 'test',
                 'role' => $roles[$index - 1],
                 'created_at' => now(),
                 'updated_at' => now(),
