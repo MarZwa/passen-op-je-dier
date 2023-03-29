@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->double('rate', 3, 2);
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->nullable()->comment('null: Nog geen sitter gevonden, false: Geen sitter gevonden, true: Sitter gevonden');
             $table->foreignId('pet_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('sitter_id')->references('users')->on('users')->nullable()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('kind');
-            $table->text('description');
-            $table->string('picture');
+            $table->text('description')->default('Geen beschrijving');
+            $table->string('picture')->nullable();
             $table->foreign('owner_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('sitter_id')->references('id')->on('users')->nullable()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
