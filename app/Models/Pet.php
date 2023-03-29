@@ -13,11 +13,11 @@ class Pet extends Model
         'name',
         'description',
         'picture',
-        'owner_id'
+        'user_id'
     ];
 
     public function user() {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->belongsTo(User::class);
     }
 
     public function request() {

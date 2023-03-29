@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date');
-            $table->double('rate', 3, 2);
+            $table->double('rate', 5, 2);
             $table->boolean('status')->nullable()->comment('null: Nog geen sitter gevonden, false: Geen sitter gevonden, true: Sitter gevonden');
             $table->foreignId('pet_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('sitter_id')->references('users')->on('users')->nullable()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('sitter_id')->nullable()->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,9 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pets', function (Blueprint $table) {
-            $table->dropForeign('pet_id');
-            $table->dropForeign('sitter_id');
+        Schema::table('requests', function (Blueprint $table) {
+            $table->dropForeign(['pet_id']);
+            $table->dropForeign(['sitter_id']);
         });
         Schema::dropIfExists('requests');
     }

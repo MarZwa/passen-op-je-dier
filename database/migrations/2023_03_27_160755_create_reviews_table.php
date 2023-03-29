@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->text('review');
-            $table->int('rating');
-            $table->foreign('owner_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('sitter_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->bigInteger('rating');
+            $table->foreignId('owner_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('sitter_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,9 +26,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pets', function (Blueprint $table) {
-            $table->dropForeign('owner_id');
-            $table->dropForeign('sitter_id');
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->dropForeign(['owner_id']);
+            $table->dropForeign(['sitter_id']);
         });
         Schema::dropIfExists('reviews');
     }

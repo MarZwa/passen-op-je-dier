@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('kind');
-            $table->text('description')->default('Geen beschrijving');
+            $table->text('description')->nullable();
             $table->string('picture')->nullable();
-            $table->foreign('owner_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('sitter_id')->references('id')->on('users')->nullable()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('owner_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->foreignId('sitter_id')->references('id')->on('users')->nullable()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,8 +29,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('pets', function (Blueprint $table) {
-            $table->dropForeign('owner_id');
-            $table->dropForeign('sitter_id');
+            $table->dropForeign(['owner_id']);
+            // $table->dropForeign(['sitter_id']);
         });
         Schema::dropIfExists('pets');
     }
