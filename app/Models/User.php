@@ -19,8 +19,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'surname',
-        'lastname',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'role'
@@ -59,5 +59,9 @@ class User extends Authenticatable
 
     public function asset() {
         return $this->hasMany(Asset::class);
+    }
+
+    public function silicitation() {
+        return $this->hasMany(Solicitation::class);
     }
 }

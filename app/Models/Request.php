@@ -23,4 +23,8 @@ class Request extends Model
     public function sitter() {
         return $this->hasOne(User::class, 'sitter_id');
     }
+
+    public function solicitaion() {
+        return $this->hasMany(Solicitation::class);
+    }
 }
