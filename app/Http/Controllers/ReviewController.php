@@ -28,7 +28,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('is_owner');
+        // $this->Authorize('is_owner');
 
         $request->validate([
             'review' => 'required|string',

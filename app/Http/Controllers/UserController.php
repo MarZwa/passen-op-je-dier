@@ -74,7 +74,7 @@ class UserController extends Controller
 
     public function block (Request $request) 
     {
-        $this->Authorize('is-admin');
+        $this->authorize('is-admin');
 
         User::where('id', $request['id'])->update(['blocked' => true]);
 
@@ -83,7 +83,7 @@ class UserController extends Controller
 
     public function unblock (Request $request) 
     {
-        $this->Authorize('is-admin');
+        $this->authorize('is-admin');
 
         User::where('id', $request['id'])->update(['blocked' => false]);
 
