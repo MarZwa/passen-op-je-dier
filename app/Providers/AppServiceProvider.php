@@ -49,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->id === $request->pet->owner_id;
         });
 
+        Gate::define('answer-registration', function (User $user, Registration $registration) {
+            return $user->id === $registration->request->pet->owner_id;
+        });
+
         Gate::define('destroy-registration', function (User $user, Registration $registration) {
             return $user->id === $registration->user_id;
         });

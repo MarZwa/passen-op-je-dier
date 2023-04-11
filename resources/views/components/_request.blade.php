@@ -3,7 +3,7 @@
         <h2>{{ $request->pet->name }}</h2>
     </section>
     <figure class="card__fig">
-        <img src="{{ url('storage/' . $request->pet->picture) }}" alt="{{$request->pet->kind}}" class="card__fig__img">
+        <img src="{{ url('storage/' . $request->pet->picture) }}" alt="{{ $request->pet->kind }}" class="card__fig__img">
     </figure>
     <h3>Soort dier</h3>
     <p class="mb-03">{{ $request->pet->kind }}</p>
@@ -25,11 +25,13 @@
             <a href="{{ route('requests.show', ['id' => $request->id]) }}" class="btn-primary">Meer informatie</a>
         </section>
     @endif
-    @if (Auth::user() && ((Auth::user()->role === 'Admin') || (Auth::user()->id === $request->pet->owner_id && Request::is('requests/index/pet/*'))))
-    <form action="{{ route('requests.destroy', ['id' => $request->id]) }}" method="POST" class="mt-03">
-    @csrf
-    @method('delete')    
-    <button type="submit" class="btn-primary btn-primary--red">Verwijderen</button>
-    </form>
+    @if (Auth::user() &&
+            ((Auth::user()->role === 'Admin') ||
+                (Auth::user()->id === $request->pet->owner_id && Request::is('requests/pet/*'))))
+        <form action="{{ route('requests.destroy', ['id' => $request->id]) }}" method="POST" class="mt-03">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn-primary btn-primary--red">Verwijderen</button>
+        </form>
     @endif
 </article>
