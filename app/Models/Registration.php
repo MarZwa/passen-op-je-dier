@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Solicitation extends Model
+class Registration extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'request_id',
-        'user_id'
+        'user_id',
+        'motivation'
     ];
 
     public function request() {

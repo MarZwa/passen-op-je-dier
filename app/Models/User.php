@@ -61,7 +61,7 @@ class User extends Authenticatable
         return $this->hasMany(Asset::class);
     }
 
-    public function silicitation() {
-        return $this->hasMany(Solicitation::class);
+    public function registration() {
+        return $this->hasMany(Registration::class);
     }
 }
